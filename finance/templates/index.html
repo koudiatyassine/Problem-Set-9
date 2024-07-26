@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block main %}
+    <div class="container">
+        <h1>Portfolio</h1>
+        <p>Cash: {{ cash | usd }}</p>
+
+        {% if portfolio %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Shares</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stock in portfolio %}
+                        <tr>
+                            <td>{{ stock.symbol }}</td>
+                            <td>{{ stock.shares }}</td>
+                            <td>{{ stock.price | usd }}</td>
+                            <td>{{ stock.total | usd }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No stocks to display.</p>
+        {% endif %}
+
+        <a href="/buy">Buy</a>
+        <a href="/sell">Sell</a>
+        <a href="/history">History</a>
+        <a href="/logout">Logout</a>
+    </div>
+    {% endblock %}
+

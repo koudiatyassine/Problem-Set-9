@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Finance{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1 style="color: red; font-size:50px"><span style="color: blue;">C</span><span style="color: red;">$</span><span style="color: yellow;">5</span><span style="color: green;">0</span> Finance</h1>
+
+        <nav>
+            <ul>
+                {% if session.get("user_id") %}
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/buy">Buy</a></li>
+                    <li><a href="/sell">Sell</a></li>
+                    <li><a href="/history">History</a></li>
+                    <li><a href="/quote">Quote</a></li>
+                    <div style=" position:relative; left:600px;" >
+                        <li><a href="/logout">Log Out</a></li>
+                    </div>
+
+                {% else %}
+                <div style=" position:relative; left:700px;" >
+                 <li><a href="/login">Log In</a></li>
+                </div>
+                <div style=" position:relative; left:500px;">
+                 <li><a href="/register">Register</a></li>
+                </div>
+
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block main %}{% endblock %}
+    </main>
+</body>
+</html>
